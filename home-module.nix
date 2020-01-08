@@ -17,6 +17,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    home.packages = [ cfg.package ];
   };
 }

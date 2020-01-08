@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
   pname = "dot";
   version = "0.0.0";
   meta = with stdenv.lib; {
-    description = "Minimal dotfiles manager in bash with git";
+    description = "Simple dotfiles management in bash with git";
     homepage = https://github.com/drojas/dot;
     license = licenses.gpl3;
     maintainers = [
