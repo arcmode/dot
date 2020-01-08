@@ -1,10 +1,11 @@
 {
-  pkgs ? (import <nixpkgs> {}),
-  stdenv ? pkgs.stdenv,
+  pkgs ? (import <nixpkgs> {})
 }:
 
+with pkgs;
+
 let
-  gitPath = pkgs.lib.makeBinPath [ pkgs.git ];
+  gitPath = lib.makeBinPath [ git ];
 in
 stdenv.mkDerivation rec {
   pname = "dot";
@@ -21,10 +22,10 @@ stdenv.mkDerivation rec {
   phases = "installPhase fixupPhase";
   installPhase = ''
     mkdir -p $out/bin
-    cp ${src}/dot.bash $out/bin/dot
-    chmod +x $out/bin/dot
-    wrapProgram $out/bin/dot --prefix PATH : ${ gitPath }
+    cp ${src}/dot.bash $out/.wrapped
+    chmod +x $out/.wrapped
+    makeWrapper $out/.wrapped $out/bin/dot --prefix PATH : ${ gitPath }
   '';
   src = ./src;
-  nativeBuildInputs = [ pkgs.makeWrapper ];
+  nativeBuildInputs = [ makeWrapper ];
 }

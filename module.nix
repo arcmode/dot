@@ -1,16 +1,22 @@
 { config, pkgs, lib ? pkgs.lib, ... }:
 
+with lib;
+
 let
   cfg = config.programs.dot;
   dotPackage = (import ./. {});
 in {
   options = {
     programs.dot = {
-      enable = lib.mkEnableOption "dot";
+      enable = mkEnableOption "dot";
+      pkg = mkOption {
+        type = types.package;
+        default = dotPackage;
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = [ dotPackage ];
   };
 }

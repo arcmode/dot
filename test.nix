@@ -1,6 +1,6 @@
 import <nixpkgs/nixos/tests/make-test.nix> ({ pkgs, ...} : {
 
-  name = "dot";
+  name = "dot-test";
 
   nodes = {
     test = { config, pkgs, ... }: {
@@ -10,9 +10,12 @@ import <nixpkgs/nixos/tests/make-test.nix> ({ pkgs, ...} : {
     };
   };
 
-  testScript = ''
-    startAll;
+  testScript =
+    ''
+      startAll;
 
-    $test->succeed('dot init "git@github.com:drojas/.files.git"')
-  '';
+      $test->waitForUnit("multi-user.target");
+
+      $test->succeed("which dot");
+    '';
 })
