@@ -1,3 +1,3 @@
 self: super: {
-  dot = self.callPackage ./derivation.nix {};
+  dot = self.callPackage ./nixpkgs/pkgs/dot.nix {};
 }

@@ -1,10 +1,10 @@
-{ config, pkgs, lib ? pkgs.lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 
 let
   cfg = config.programs.dot;
-  dotPackage = (import ./. {});
+  dotPackage = (import ../../../. {});
 in {
   options = {
     programs.dot = {
@@ -17,6 +17,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    home.packages = [ cfg.package ];
   };
 }

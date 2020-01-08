@@ -4,7 +4,7 @@ import <nixpkgs/nixos/tests/make-test.nix> ({ pkgs, ...} : {
 
   nodes = {
     test = { config, pkgs, ... }: {
-      imports = [ ./module.nix ];
+      imports = [ ../modules/programs/dot.nix ];
 
       programs.dot.enable = true;
     };

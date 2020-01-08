@@ -1,3 +1,3 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.callPackage ./derivation.nix {}
+pkgs.callPackage ./nixpkgs/pkgs/dot.nix {}

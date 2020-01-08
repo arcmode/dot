@@ -26,6 +26,7 @@ stdenv.mkDerivation rec {
     chmod +x $out/.wrapped
     makeWrapper $out/.wrapped $out/bin/dot --prefix PATH : ${ gitPath }
   '';
-  src = ./src;
+  # TODO: what is the simplest approach in order to fetchFromGitHub instead (same repo vs git subtree)
+  src = ../../src;
   nativeBuildInputs = [ makeWrapper ];
 }
