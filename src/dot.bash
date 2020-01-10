@@ -25,9 +25,17 @@ cmd_git() {
     do_git "$@"
 }
 
+cmd_inspect() {
+    # do_git ls-files --other --exclude=.cache | grep -v /
+    do_git config status.showUntrackedFiles normal
+    do_git status --porcelain "$@"
+    do_git config status.showUntrackedFiles no
+}
+
 case "$1" in
-    init) shift;  cmd_init "$@" ;;
-    *)            cmd_git "$@" ;;
+    init) shift;    cmd_init "$@" ;;
+    inspect) shift; cmd_inspect "$@";;
+    *)              cmd_git "$@" ;;
 
 esac
 

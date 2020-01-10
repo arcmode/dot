@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.programs.dot;
-  dotPackage = (import ../../../. {});
+  dotPackage = (import ../../../../. {});
 in {
   options = {
     programs.dot = {
